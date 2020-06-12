@@ -97,3 +97,30 @@ export let noteValues = {
   'B7': 3951.07,
   'C8': 4186.01
 }
+
+export let testBoard = {
+  'C3': { keycode: 81, freq: 130.81, class: 'white' },
+  'Cs3': { keycode: 50, freq: 138.59, class: 'black' },
+  'D3': { keycode: 87, freq: 146.83, class: 'white' },
+  'Ds3': { keycode: 51, freq: 155.56, class: 'black' },
+  'E3': { keycode: 69, freq: 164.81, class: 'white' },
+  'F3': { keycode: 82, freq: 174.61, class: 'white' },
+  'Fs3': { keycode: 53, freq: 185.00, class: 'black' },
+  'G3': { keycode: 84, freq: 196.00, class: 'white' },
+  'Gs3': { keycode: 54, freq: 207.65, class: 'black' },
+  'A3': { keycode: 89, freq: 220.00, class: 'white' },
+  'As3': { keycode: 55, freq: 233.08, class: 'black' },
+  'B3': { keycode: 85, freq: 246.94, class: 'white' },
+  'C4': { keycode: 90, freq: 261.63, class: 'white' },
+  'Cs4': { keycode: 83, freq: 277.18, class: 'black' },
+  'D4': { keycode: 88, freq: 293.66, class: 'white' },
+  'Ds4': { keycode: 68, freq: 311.13, class: 'black' },
+  'E4': { keycode: 67, freq: 329.63, class: 'white' },
+  'F4': { keycode: 86, freq: 349.23, class: 'white' },
+  'Fs4': { keycode: 71, freq: 369.99, class: 'black' },
+  'G4': { keycode: 66, freq: 392.00, class: 'white' },
+  'Gs4': { keycode: 72, freq: 415.30, class: 'black' },
+  'A4': { keycode: 78, freq: 440.00, class: 'white' },
+  'As4': { keycode: 74, freq: 466.16, class: 'black' },
+  'B4': { keycode: 77, freq: 493.88, class: 'white' }
+}
