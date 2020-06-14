@@ -14,14 +14,16 @@
 			<option value="sawtooth">sawtooth</option>
 		</select>
 
+		<p>{{pressedNotes}}</p>
+
 		<hr>
 
 		<div class="keyboard">
 			<div
 				v-for="note in testBoard"
 				:key="note.id"
-				:class="note.class"
-				@click="playSound(note.freq); removeNote(note.freq)"
+				:class="[note.class, {'pressed': pressedNotes.includes(note.freq)}]"
+				@mousedown="playSound(note.freq, 1)"
 			>
 				<p>{{getKeyByValue(testBoard, note).replace('s', '#')}}</p>
 				<p>{{String.fromCharCode(note.keycode)}}</p>
@@ -67,7 +69,7 @@ export default {
 			return Object.keys(object).find(key => object[key] === value);
 		}
 		,
-		playSound(note) {
+		playSound(note, clicked) {
 			if (this.pressedNotes.includes(note)) {
 				return;
 			} else {
@@ -89,7 +91,12 @@ export default {
 				);
 				setTimeout(() => {
 					context.close();
-				}, 1000)
+				}, 1000);
+				if (clicked === 1) {
+					setTimeout(() => {
+						this.removeNote(note);
+					}, 50)
+				}
 			}
 		},
 		removeNote(note) {
@@ -146,9 +153,14 @@ html {
 	background-color: black;
 	margin: 0 -30px;
 	z-index: 2;
+	border: 1px solid black;
 }
 
 .black p {
 	color: white;
+}
+
+.pressed {
+	background-color: #444;
 }
 </style>
