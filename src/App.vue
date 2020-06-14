@@ -19,7 +19,9 @@
 		<div class="keyboard">
 			<div
 				v-for="note in testBoard"
+				:key="note.id"
 				:class="note.class"
+				@click="playSound(note.freq); removeNote(note.freq)"
 			>
 				<p>{{getKeyByValue(testBoard, note).replace('s', '#')}}</p>
 				<p>{{String.fromCharCode(note.keycode)}}</p>
@@ -28,12 +30,14 @@
 
 		<Keypress
 			v-for="note in testBoard"
+			:key="note.id"
 			key-event="keydown"
 			:key-code="note.keycode"
 			@success="playSound(note.freq)"
 		/>
 		<Keypress
 			v-for="note in testBoard"
+			:key="note.id"
 			key-event="keyup"
 			:key-code="note.keycode"
 			@success="removeNote(note.freq)"
