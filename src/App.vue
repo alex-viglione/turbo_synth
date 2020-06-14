@@ -22,7 +22,7 @@
 			<div
 				v-for="note in testBoard"
 				:key="note.id"
-				:class="[note.class, {'pressed': pressedNotes.includes(note.freq)}]"
+				:class="[note.class, getKeyByValue(testBoard, note).charAt(0), {'pressed': pressedNotes.includes(note.freq)}]"
 				@mousedown="playSound(note.freq, 1)"
 			>
 				<p>{{getKeyByValue(testBoard, note).replace('s', '#')}}</p>
@@ -124,7 +124,7 @@ html {
 }
 
 .keyboard {
-	width: 90%;
+	width: 80%;
 	margin: auto;
 	display: flex;
 	flex-direction: row;
@@ -140,11 +140,18 @@ html {
 	user-select: none;
 }
 
+.keyboard div:last-child {
+	border-right: 1px solid black;
+}
+
 .white {
 	width: 100px;
 	height: 400px;
 	background-color: white;
 	border: 1px solid black;
+	/* border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black; */
 }
 
 .black {
@@ -153,7 +160,7 @@ html {
 	background-color: black;
 	margin: 0 -30px;
 	z-index: 2;
-	border: 1px solid black;
+	border: 0.5px solid black;
 }
 
 .black p {
