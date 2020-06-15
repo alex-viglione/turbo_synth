@@ -14,12 +14,10 @@
 			<option value="sawtooth">sawtooth</option>
 		</select>
 
-		<p>{{pressedNotes}}</p>
-
 		<hr>
 
-		<div class="keyboard">
-			<div
+		<ul class="keyboard">
+			<li
 				v-for="note in testBoard"
 				:key="note.id"
 				:class="[note.class, getKeyByValue(testBoard, note).charAt(0), {'pressed': pressedNotes.includes(note.freq)}]"
@@ -27,8 +25,8 @@
 			>
 				<p>{{getKeyByValue(testBoard, note).replace('s', '#')}}</p>
 				<p>{{String.fromCharCode(note.keycode)}}</p>
-			</div>
-		</div>
+			</li>
+		</ul>
 
 		<Keypress
 			v-for="note in testBoard"
@@ -124,13 +122,18 @@ html {
 }
 
 .keyboard {
-	width: 80%;
+	width: 68em;
+	position: relative;
 	margin: auto;
 	display: flex;
 	flex-direction: row;
+	list-style: none;
+	padding: 0;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
 }
 
-.keyboard div {
+.keyboard li {
 	color: black;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -138,9 +141,11 @@ html {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	position: relative;
+	float: left;
 }
 
-.keyboard div:last-child {
+.keyboard li:last-child {
 	border-right: 1px solid black;
 }
 
@@ -148,19 +153,17 @@ html {
 	width: 100px;
 	height: 400px;
 	background-color: white;
-	border: 1px solid black;
-	/* border-left: 1px solid black;
-	border-bottom: 1px solid black;
-	border-top: 1px solid black; */
+	border-left: 1px solid black;
 }
 
 .black {
 	width: 60px;
 	height: 240px;
 	background-color: black;
-	margin: 0 -30px;
+	margin: 0 -25px;
 	z-index: 2;
 	border: 0.5px solid black;
+	border-top: none;
 }
 
 .black p {
