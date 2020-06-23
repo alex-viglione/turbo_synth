@@ -1,18 +1,23 @@
 <template>
 	<div id="app">
-		<h1>Basic oscillator test</h1>
-		<label for="waveType">Choose a wave type:</label>
+		<h1>Turbo_Synth</h1>
+		<button @click="showInfo = !showInfo">Show/hide Info</button>
+		<InfoBox v-show="showInfo" />
+		<div id="wave_select">
+			<label for="waveType">Choose a wave type:</label>
 
-		<select
-			name="waveType"
-			id="waveType"
-			v-model="wave"
-		>
-			<option value="sine">sine</option>
-			<option value="square">square</option>
-			<option value="triangle">triangle</option>
-			<option value="sawtooth">sawtooth</option>
-		</select>
+			<select
+				name="waveType"
+				id="waveType"
+				v-model="wave"
+			>
+				<option
+					v-for="w in waves"
+					:value="w"
+					class="opt"
+				>{{w}}</option>
+			</select>
+		</div>
 
 		<hr>
 
@@ -47,6 +52,7 @@
 
 <script>
 import { noteValues, testBoard } from './assets/notevalues.js';
+import InfoBox from './components/InfoBox.vue';
 
 export default {
 	name: 'App',
@@ -56,10 +62,13 @@ export default {
 			testBoard,
 			selectedNote: null,
 			wave: 'sine',
+			waves: ['sine', 'square', 'triangle', 'sawtooth'],
 			pressedNotes: [],
+			showInfo: false
 		}
 	},
 	components: {
+		InfoBox,
 		Keypress: () => import('vue-keypress')
 	},
 	methods: {
@@ -105,6 +114,7 @@ export default {
 		}
 	},
 }
+
 </script>
 
 <style>
@@ -118,7 +128,15 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	color: white;
-	margin-top: 60px;
+	margin-top: 2em;
+}
+
+#wave_select {
+	margin-top: 1em;
+}
+
+#wave_select label {
+	padding-right: 0.5em;
 }
 
 .keyboard {
